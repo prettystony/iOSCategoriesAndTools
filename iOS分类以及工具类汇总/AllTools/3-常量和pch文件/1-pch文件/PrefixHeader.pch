@@ -1,0 +1,79 @@
+
+/*
+ pch步骤:1.提前编译Pch
+ 
+ 1.存放公用宏
+ 2.存放公用头文件
+ 3.自定义Log
+ */
+
+// 应用程序托管
+#define AppDelegateInstance                            ((AppDelegate*)([UIApplication sharedApplication].delegate))
+
+/*** 评论-头部控件-字体 ***/
+#define XYFCommentSectionHeaderFont [UIFont systemFontOfSize:15]
+
+/*** 当前系统版本判断 ***/
+#define iOS(version) ([UIDevice currentDevice].systemVersion.doubleValue >= (version))
+
+
+// #filename -> "filename"
+// @#filename -> @"filename"
+#define XYFAFNWriteToPlist(filename) [responseObject writeToFile:[NSString stringWithFormat:@"/Users/xyf/Desktop/%@.plist", @#filename] atomically:YES];
+
+/*** 颜色 ***/
+#define XYFColorA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
+#define XYFColor(r, g, b) XYFColorA((r), (g), (b), 1.0)
+#define XYFRandomColor XYFColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
+#define XYFrayColor(v) XYFColor((v), (v), (v))
+#define XYFCommonBgColor XYFrayColor(206)
+
+/***********屏幕适配*************/
+#define SCREEN_WIDTH [[UIScreen mainScreen]bounds].size.width
+#define SCREEN_HEIGHT [[UIScreen mainScreen]bounds].size.height
+#define iphone6P (SCREEN_HEIGHT == 736)
+#define iphone6 (SCREEN_HEIGHT == 667)
+#define iphone5 (SCREEN_HEIGHT == 568)
+#define iphone4 (SCREEN_HEIGHT == 480)
+/***********屏幕适配*************/
+
+/***********LOG*************/
+#ifdef DEBUG// 调试
+#define                                         MyLog(...) NSLog(__VA_ARGS__);
+#define                                         MyLogFunc NSLog(@"%s", __func__);
+#define                                         MyLogError(...) NSLog(@"%@传入数据有误",__VA_ARGS__);
+#else// 发布
+#define                                         MyLog(...)
+#define                                         MyLogFunc
+#define                                         MyLogError(...)
+#endif
+/***********字体*************/
+#define iPhone4SmallFont  [UIFont systemFontOfSize:12]
+#define iPhone5SmallFont  [UIFont systemFontOfSize:12]
+#define iPhone6SmallFont  [UIFont systemFontOfSize:13]
+#define iPhone6pSmallFont [UIFont systemFontOfSize:14]
+
+#define iPhone4NormalFont  [UIFont systemFontOfSize:14]
+#define iPhone5NormalFont  [UIFont systemFontOfSize:14]
+#define iPhone6NormalFont  [UIFont systemFontOfSize:15]
+#define iPhone6pNormalFont [UIFont systemFontOfSize:16]
+
+#define iPhone4BigFont  [UIFont systemFontOfSize:15]
+#define iPhone5BigFont  [UIFont systemFontOfSize:15]
+#define iPhone6BigFont  [UIFont systemFontOfSize:16]
+#define iPhone6pBigFont [UIFont systemFontOfSize:17]
+
+
+#define cusFont10 [UIFont systemFontOfSize:10]
+#define cusFont11 [UIFont systemFontOfSize:11]
+#define cusFont12 [UIFont systemFontOfSize:12]
+#define cusFont13 [UIFont systemFontOfSize:13]
+#define cusFont14 [UIFont systemFontOfSize:14]
+#define cusFont15 [UIFont systemFontOfSize:15]
+#define cusFont16 [UIFont systemFontOfSize:16]
+#define cusFont17 [UIFont systemFontOfSize:17]
+#define cusFont18 [UIFont systemFontOfSize:18]
+#define cusFont19 [UIFont systemFontOfSize:19]
+/***********强弱引用*************/
+#define kWeakSelf typeof(self) __weak weakSelf = self;
+#define kStrongSelf typeof(weakSelf) __strong strongSelf = weakSelf;
